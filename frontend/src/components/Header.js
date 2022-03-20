@@ -27,6 +27,7 @@ const Wrapper = styled.header`
   padding: var(--padding-page) 18px;
 `;
 const Logo = styled.div`
+  color: black;
   background-image: url(${slingairLogo});
   background-repeat: no-repeat;
   background-position: left center, right center;

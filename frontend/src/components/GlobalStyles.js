@@ -1,12 +1,22 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
-  :root {
+  /* :root {
     --color-cadmium-red: #D80026;
     --color-alabama-crimson: #AA001E;
     --color-orange: #F79D00;
     --color-selective-yellow: #FDBB01;
     --color-desert-sand: #E3C4A6;
+    --font-heading: 'Permanent Marker', Arial, Helvetica, sans-serif;
+    --font-body: 'Kosugi', Arial, Helvetica, sans-serif;
+    --padding-page: 24px;
+  } */
+  :root {
+    --color-cadmium-red:#000000;
+    --color-alabama-crimson:#ffcc99;  //header
+    --color-orange:#ff9999; //center
+    --color-selective-yellow: #ff6666; //buttons
+    --color-desert-sand:#000000 ;
     --font-heading: 'Permanent Marker', Arial, Helvetica, sans-serif;
     --font-body: 'Kosugi', Arial, Helvetica, sans-serif;
     --padding-page: 24px;
