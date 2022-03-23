@@ -2,24 +2,30 @@
 
 // import the needed node_modules.
 const express = require("express");
+const bodyParser = require("body-parser");
 const morgan = require("morgan");
 
-express()
+const { getFlights, getFlight } = require("./handlers");
+var app = express()
   // Below are methods that are included in express(). We chain them for convenience.
   // --------------------------------------------------------------------------------
 
   // This will give us will log more info to the console. see https://www.npmjs.com/package/morgan
   .use(morgan("tiny"))
   .use(express.json())
+  .use(bodyParser.json())
 
   // Any requests for static files will go into the public folder
-  .use(express.static("public"))
+  .use(express.static("public"));
 
-  // Nothing to modify above this line
-  // ---------------------------------
-  // add new endpoints here 👇
-  //
+// Nothing to modify above this line
+// ---------------------------------
+// add new endpoints here 👇
+//
+app.get("/flights", getFlights);
 
+app
+  .get("/flights/:id", getFlight)
   //
   // add new endpoints here ☝️
   // ---------------------------------
