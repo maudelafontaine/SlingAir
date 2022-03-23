@@ -1,3 +1,5 @@
+// Plane seating : select a seat
+
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -6,6 +8,20 @@ const Plane = ({}) => {
 
   useEffect(() => {
     // TODO: get seating data for selected flight
+    // return fetch("/flights")
+    //   .then((res) => {
+    //     if (res.ok) {
+    //       return res.json();
+    //     } else {
+    //       throw Error("Plane fetching error");
+    //     }
+    //   })
+    //   .then((data) => {
+    //     setSeating(data.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }, []);
 
   return (
@@ -32,19 +48,6 @@ const Plane = ({}) => {
   );
 };
 
-const Placeholder = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 404px;
-  width: 260px;
-  text-align: center;
-  color: var(--color-orange);
-  font-family: var(--font-heading);
-  font-size: 32px;
-  opacity: 0.5;
-`;
-
 const Wrapper = styled.ol`
   display: grid;
   grid-template-rows: repeat(10, 30px);
@@ -53,12 +56,14 @@ const Wrapper = styled.ol`
   background: #fff;
   border-right: 15px solid var(--color-alabama-crimson);
   border-left: 15px solid var(--color-alabama-crimson);
-  margin: 24px 24px 0 0;
+  /* margin: 24px 24px 0 0; */
+  margin-right: 300px;
   padding: 48px 5px;
   height: 500px;
   width: 300px;
   position: relative;
 `;
+
 const SeatWrapper = styled.li`
   display: flex;
   font-size: 12px;
@@ -67,6 +72,7 @@ const SeatWrapper = styled.li`
   height: 30px;
   width: 30px;
 `;
+
 const Seat = styled.input`
   opacity: 0;
   position: absolute;
@@ -109,10 +115,27 @@ const Available = styled(SeatNumber)`
     font-weight: 700;
   }
 `;
+
 const Unavailable = styled(SeatNumber)`
   background: var(--color-selective-yellow);
   cursor: not-allowed;
   opacity: 0.4;
 `;
 
+const Placeholder = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 404px;
+  width: 260px;
+  text-align: center;
+  color: var(--color-orange);
+  font-family: var(--font-heading);
+  font-size: 32px;
+  opacity: 0.5;
+`;
+
 export default Plane;
+
+// Notes :
+// https://www.w3schools.com/html/html_form_elements.asp
