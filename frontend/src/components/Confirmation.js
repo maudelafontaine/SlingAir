@@ -16,18 +16,42 @@ const Confirmation = () => {
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  height: 400px;
+  /* width: 1000px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  border: solid var(--color-alabama-crimson) 5px;
+`;
 
-const Text = styled.h1``;
+const Text = styled.h1`
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-size: 35px;
+  border-bottom: 6px solid var(--color-alabama-crimson);
+  padding-bottom: 5px;
+`;
 
-const ResNum = styled.h2``;
+const ResNum = styled.h2`
+  margin-bottom: 20px;
+`;
 
-const FlightNum = styled.h2``;
+const FlightNum = styled.h2`
+  margin-bottom: 20px;
+`;
 
-const SeatNum = styled.h2``;
+const SeatNum = styled.h2`
+  margin-bottom: 20px;
+`;
 
-const Name = styled.h2``;
+const Name = styled.h2`
+  margin-bottom: 20px;
+`;
 
-const Email = styled.h2``;
+const Email = styled.h2`
+  margin-bottom: 20px;
+`;
 
 export default Confirmation;

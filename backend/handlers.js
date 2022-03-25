@@ -25,6 +25,8 @@ const getFlight = (req, res) => {
   }
 };
 
+// Create a reservation (post)
+
 const addReservations = (req, res) => {};
 
 const getReservations = (req, res) => {};

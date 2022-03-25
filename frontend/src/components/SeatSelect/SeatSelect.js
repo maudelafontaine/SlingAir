@@ -1,10 +1,10 @@
-// Combines the Plane and Information
+// Combines the Plane and Form (user inputs)
 
 import React from "react";
 import styled from "styled-components";
-import FlightSelect from "../FlightSelect";
+import FlightSelect from "./FlightSelect";
 import Plane from "./Plane";
-import Information from "./Information";
+import Form from "./Form";
 
 const SeatSelect = ({}) => {
   return (
@@ -13,8 +13,7 @@ const SeatSelect = ({}) => {
       <Text>Select your seat and Provide your information!</Text>
       <ToSelect>
         <Plane />
-        <Information />
-        <Form>Form</Form>
+        <Form />
       </ToSelect>
     </Wrapper>
   );
@@ -25,6 +24,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  /* height: 2000px; */
 `;
 
 const Text = styled.h2`
@@ -40,7 +40,7 @@ const ToSelect = styled.div`
 `;
 
 // Remplace Information.js pour le moment
-const Form = styled.h2`
-  color: white;
-`;
+// const Form = styled.h2`
+//   color: white;
+// `;
 export default SeatSelect;

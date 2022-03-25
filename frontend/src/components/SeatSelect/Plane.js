@@ -62,6 +62,7 @@ const Wrapper = styled.ol`
   height: 500px;
   width: 300px;
   position: relative;
+  cursor: pointer;
 `;
 
 const SeatWrapper = styled.li`

@@ -34,7 +34,8 @@ const Main = styled.div`
   background: var(--color-orange);
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 110px);
+  /* height: calc(100vh - 110px); */
+  height: 1100px;
 `;
 
 export default App;
