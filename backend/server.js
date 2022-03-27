@@ -10,6 +10,9 @@ const {
   getFlight,
   getReservations,
   getSingleReservation,
+  addReservations,
+  deleteReservation,
+  updateReservation,
 } = require("./handlers");
 var app = express()
   // Below are methods that are included in express(). We chain them for convenience.
@@ -33,15 +36,21 @@ app.get("/flight/:_id", getFlight);
 
 app.get("/reservations", getReservations);
 
+app.get("/reservation/:_id", getSingleReservation);
+
+app.post("/reservation", addReservations);
+
+app.delete("/reservation/:_id", deleteReservation);
+
+app.patch("/reservation/:_id", updateReservation);
+
+//
+// add new endpoints here ☝️
+// ---------------------------------
+// Nothing to modify below this line
+
+// this is our catch all endpoint.
 app
-  .get("/reservation/:_id", getSingleReservation)
-
-  //
-  // add new endpoints here ☝️
-  // ---------------------------------
-  // Nothing to modify below this line
-
-  // this is our catch all endpoint.
   .get("*", (req, res) => {
     res.status(404).json({
       status: 404,
