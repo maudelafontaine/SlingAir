@@ -6,17 +6,23 @@ import FlightSelect from "./FlightSelect";
 import Plane from "./Plane";
 import Form from "./Form";
 
-const SeatSelect = ({}) => {
+const SeatSelect = ({ setReservationDetails }) => {
   return (
     <Wrapper>
       <FlightSelect />
       <Text>Select your seat and Provide your information!</Text>
       <ToSelect>
-        <Plane />
+        <Plane setReservationDetails={setReservationDetails} />
         <Form />
       </ToSelect>
     </Wrapper>
   );
+  // return (
+  //   <Wrapper>
+  //     <Text>Select your seat and Provide your information!</Text>
+  //     <Plane setReservationDetails={setReservationDetails}/>
+  //   </Wrapper>
+  // )
 };
 
 const Wrapper = styled.div`

@@ -21,7 +21,7 @@ const flights = {
     { id: "4A", isAvailable: true },
     { id: "4B", isAvailable: true },
     { id: "4C", isAvailable: true },
-    { id: "4D", isAvailable: false },
+    { id: "4D", isAvailable: true },
     { id: "4E", isAvailable: true },
     { id: "4F", isAvailable: true },
     { id: "5A", isAvailable: true },

@@ -1,17 +1,28 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
 import tombstone from "../assets/tombstone.png";
 
-const Confirmation = () => {
+const Confirmation = ({ reservationDetails }) => {
+  let navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (!reservationDetails) {
+      navigate("/");
+    }
+  }, []);
+
   return (
     <Wrapper>
-      <Text>Your flight is confirmed !</Text>
-      <ResNum>Reservation #: </ResNum>
-      <FlightNum>Flight #:</FlightNum>
-      <SeatNum>Seat #:</SeatNum>
-      <Name>Name:</Name>
-      <Email>Email:</Email>
+      <Text>
+        <strong>Your flight is confirmed !</strong>
+      </Text>
+      {/* <ResNum>Reservation #: {reservationDetails._id} </ResNum>
+      <FlightNum>Flight #: {reservationDetails.flight}</FlightNum>
+      <SeatNum>Seat #:{reservationDetails.seat}</SeatNum>
+      <Name>Name:{reservationDetails.givenName} {reservationDetails.surname}</Name>
+      <Email>Email:{reservationDetails.email}</Email>
+      <Logo src={tombstone} /> */}
     </Wrapper>
   );
 };

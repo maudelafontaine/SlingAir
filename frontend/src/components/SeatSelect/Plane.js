@@ -1,42 +1,76 @@
 // Plane seating : select a seat
 
+// flight selection + plane + form
+
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
-const Plane = ({}) => {
+const Plane = ({ setReservationDetails }) => {
+  let navigate = useNavigate();
+
   const [seating, setSeating] = useState([]);
+  const [seat, setSeat] = useState(null);
+  const [flightNum, setFlightNum] = useState([]);
+  const [selectedFlight, setSelectedFlight] = useState(null);
+  const [dropdown, setDropdown] = useState(false);
+  const [givenName, setGivenName] = useState(null);
+  const [surname, setSurname] = useState(null);
+  const [email, setEmail] = useState(null);
 
+  // Notes :
+  // flight = flights.SA231
+  // seating._id
+
+  // get seating data for selected flight :
+  // app.get("/flights", getFlights);
+
+  // get flights data
   useEffect(() => {
-    // TODO: get seating data for selected flight
-    // return fetch("/flights")
-    //   .then((res) => {
-    //     if (res.ok) {
-    //       return res.json();
-    //     } else {
-    //       throw Error("Plane fetching error");
-    //     }
-    //   })
-    //   .then((data) => {
-    //     setSeating(data.data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    const findFlights = async () => {
+      const res = await fetch("/flights");
+      const data = await res.json();
+      // setFlightNum(data.data);
+      console.log(data.data);
+      setSeating(data.data);
+    };
+    findFlights();
   }, []);
+
+  // // get a flight data
+  // //app.get("/flight/:_id", getFlight);
+  // useEffect(() => {
+  //   const findSeats = async () => {
+  //     if(selectedFlight) {
+  //       const res = await fetch(`/flight/${selectedFlight}`);
+  //       const data = await res.json();
+  //       setReservationDetails(data.data);
+  //       setSeating(data.data.seats)
+
+  //     }
+  //   }
+
+  // }, []);
+
+  // useEffect(() => {
+
+  // }, []);
+
+  const handleReservation = () => {};
 
   return (
     <Wrapper>
       {seating && seating.length > 0 ? (
         seating.map((seat) => (
-          <SeatWrapper key={`seat-${seat.id}`}>
+          <SeatWrapper key={`seat-${seat._id}`}>
             <label>
               {seat.isAvailable ? (
                 <>
                   <Seat type="radio" name="seat" onChange={() => {}} />
-                  <Available>{seat.id}</Available>
+                  <Available>{seat._id}</Available>
                 </>
               ) : (
-                <Unavailable>{seat.id}</Unavailable>
+                <Unavailable>{seat._id}</Unavailable>
               )}
             </label>
           </SeatWrapper>

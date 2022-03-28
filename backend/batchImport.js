@@ -24,8 +24,6 @@ const newResArr = reservations.map((res) => {
   return res;
 });
 
-console.log(newResArr);
-
 const batchImport = async () => {
   const client = await new MongoClient(MONGO_URI, options);
   try {

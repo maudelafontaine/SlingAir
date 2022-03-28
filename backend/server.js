@@ -34,15 +34,15 @@ app.get("/flights", getFlights);
 
 app.get("/flight/:_id", getFlight);
 
-app.get("/reservations", getReservations);
+app.get("/reservations", getReservations); //
 
 app.get("/reservation/:_id", getSingleReservation);
 
 app.post("/reservation", addReservations);
 
-app.delete("/reservation/:_id", deleteReservation);
+app.delete("/reservation/:_id", deleteReservation); //
 
-app.patch("/reservation/:_id", updateReservation);
+app.patch("/reservation/:_id", updateReservation); //
 
 //
 // add new endpoints here ☝️
