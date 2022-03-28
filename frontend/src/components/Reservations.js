@@ -1,7 +1,7 @@
 import React from "react";
 
-const Reservation = () => {
+const Reservations = () => {
   return <div>Reservation</div>;
 };
 
-export default Reservation;
+export default Reservations;

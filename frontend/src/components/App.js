@@ -1,31 +1,42 @@
 import React from "react";
 import styled from "styled-components";
-// import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import SeatSelect from "./SeatSelect";
 import Confirmation from "./Confirmation";
 import Profile from "./Profile";
-import Reservation from "./Reservation";
+import Reservations from "./Reservations";
 import GlobalStyles from "./GlobalStyles";
 
 const App = () => {
+  const [reservationDetails, setReservationDetails] = React.useState(null);
+
   return (
     <>
-      <GlobalStyles />
-      <Main>
-        <Router>
-          <Header />
+      <Router>
+        <GlobalStyles />
+        <Header />
+        <Main>
           <Routes>
-            <Route exact path="/" element={<SeatSelect />} />
-            <Route path="/confirmed" element={<Confirmation />} />
+            <Route
+              exact
+              path="/"
+              element={
+                <SeatSelect setReservationDetails={setReservationDetails} />
+              }
+            />
+            <Route
+              path="/confirmed"
+              element={<Confirmation reservationDetails={reservationDetails} />}
+            />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/view-reservation" element={<Reservation />} />
+            <Route path="/view-reservation" element={<Reservations />} />
+            <Route path="">404: Oops!</Route>
           </Routes>
-        </Router>
-        <Footer />
-      </Main>
+          <Footer />
+        </Main>
+      </Router>
     </>
   );
 };
@@ -35,31 +46,7 @@ const Main = styled.div`
   display: flex;
   flex-direction: column;
   /* height: calc(100vh - 110px); */
-  height: 1100px;
+  height: 1050px;
 `;
 
 export default App;
-
-// <BrowserRouter>
-//   <GlobalStyles />
-//   <Header />
-//   <FlightSelect />
-//   <Main>
-//     <Switch>
-//       <Route exact path="/">
-//         <SeatSelect />
-//       </Route>
-//       <Route exact path="/confirmed">
-//         <Confirmation />
-//       </Route>
-//       <Route path="">404: Oops!</Route>
-//       <Route exact path="/profile">
-//         <Profile />
-//       </Route>
-//       <Route exact path="/view-reservation">
-//         <Reservation />
-//       </Route>
-//     </Switch>
-//     <Footer />
-//   </Main>
-// </BrowserRouter>
