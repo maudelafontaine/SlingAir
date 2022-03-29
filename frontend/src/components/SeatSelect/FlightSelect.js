@@ -3,36 +3,22 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const FlightSelect = () => {
-  const [dropdown, setDropdown] = useState(false);
-  const [selectedFlight, setSelectedFlight] = useState("SA231");
+const FlightSelect = ({ flight, setFlight }) => {
+  // const [flight, setFlight] = useState("");
 
   const handleClick = () => {
-    if (dropdown === false) {
-      setDropdown(true);
-    } else {
-      setDropdown(false);
-    }
-  };
-
-  const handleClickFlight = (e) => {
-    setSelectedFlight(e.currentTarget.innerText);
-    handleClick();
+    setFlight("SA231");
+    console.log("clicking works!");
+    console.log(flight);
   };
 
   return (
     <Wrapper>
-      {/* <FlightSelection> */}
-      <Title>Flight number:</Title>
-      <Dropdown>
-        <Btn onClick={handleClick}>Select a flight</Btn>
-        <List>
-          {dropdown === true && (
-            <ListItems onClick={handleClickFlight}>{selectedFlight}</ListItems>
-          )}
-        </List>
-      </Dropdown>
-      {/* </FlightSelection> */}
+      <Label htmlFor="flights">Flight number : </Label>
+      <Selection onClick={handleClick}>
+        <option value="placeholder">Select a flight </option>
+        <option value="SA231">SA231</option>
+      </Selection>
     </Wrapper>
   );
 };
@@ -42,77 +28,20 @@ const Wrapper = styled.div`
   width: 500px;
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
+  justify-content: center;
   align-items: center;
-  background-color: pink;
-
-  /* background-color: red;
-  height: 60px;
-  font-family: var(--font-heading);
-  color: white;
-  font-size: 32px; */
-  /* padding-left: 20px;
-  align-content: center;
-  display: flex; */
 `;
 
-//
-// const FlightSelection = styled.div`
-//   /* padding-top: 15px;
-//   padding-bottom: 15px;
-//   padding-left: 30px; */
-//   /* background-color: red; */
-//   /* display: flex;
-//   margin-bottom: 10px;
-//   gap: 10px; */
-// `;
-
-const Title = styled.h2`
-  font-size: 40px;
-  color: white;
-  margin-top: 20px;
-  margin-left: 10px;
-  /* text-align: left; */
+const Label = styled.label`
+  margin-right: 20px;
 `;
 
-const Dropdown = styled.div`
-  /* position: relative;
-  display: inline-block; */
-  margin-right: 5px;
-  width: 50px;
-`;
-
-const Btn = styled.div`
-  background-color: white;
-  padding: 8px;
+const Selection = styled.select`
+  width: 180px;
+  height: 40px;
   border-radius: 2px;
-  font-family: Helvetica;
-  width: 150px;
-  cursor: pointer;
+  font-size: 20px;
 `;
-
-const List = styled.div`
-  position: absolute;
-`;
-
-const ListItems = styled.div`
-  background-color: #f1f1f1;
-  position: absolute;
-  width: 150px;
-  padding: 8px;
-  font-family: Helvetica;
-  cursor: pointer;
-`;
-
-// const Select = styled.select`
-//   width: 150px;
-//   height: 30px;
-//   text-align: center;
-//   margin-left: 20px;
-//   margin-top: 15px;
-// `;
-
-// const Dropdown = styled.input``;
 
 export default FlightSelect;
 

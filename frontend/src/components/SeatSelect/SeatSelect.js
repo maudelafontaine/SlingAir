@@ -4,25 +4,22 @@ import React from "react";
 import styled from "styled-components";
 import FlightSelect from "./FlightSelect";
 import Plane from "./Plane";
-import Form from "./Form";
 
-const SeatSelect = ({ setReservationDetails }) => {
+const SeatSelect = ({ setReservationDetails, newFun }) => {
+  const [flight, setFlight] = React.useState("");
+
   return (
     <Wrapper>
-      <FlightSelect />
-      <Text>Select your seat and Provide your information!</Text>
-      <ToSelect>
-        <Plane setReservationDetails={setReservationDetails} />
-        <Form />
-      </ToSelect>
+      <FlightSelect flight={flight} setFlight={setFlight} />
+      <Container>
+        <Plane
+          setReservationDetails={setReservationDetails}
+          flight={flight}
+          newFun={newFun}
+        />
+      </Container>
     </Wrapper>
   );
-  // return (
-  //   <Wrapper>
-  //     <Text>Select your seat and Provide your information!</Text>
-  //     <Plane setReservationDetails={setReservationDetails}/>
-  //   </Wrapper>
-  // )
 };
 
 const Wrapper = styled.div`
@@ -33,20 +30,11 @@ const Wrapper = styled.div`
   /* height: 2000px; */
 `;
 
-const Text = styled.h2`
-  margin-bottom: 60px;
-  margin-top: 40px;
-`;
-
-const ToSelect = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 `;
 
-// Remplace Information.js pour le moment
-// const Form = styled.h2`
-//   color: white;
-// `;
 export default SeatSelect;

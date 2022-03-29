@@ -1,88 +1,143 @@
 // Plane seating : select a seat
 
-// flight selection + plane + form
-
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const Plane = ({ setReservationDetails }) => {
+const Plane = ({ setReservationDetails, newFun }) => {
   let navigate = useNavigate();
 
+  const flight = "SA231";
+  // States :
+  // Plane
   const [seating, setSeating] = useState([]);
-  const [seat, setSeat] = useState(null);
-  const [flightNum, setFlightNum] = useState([]);
-  const [selectedFlight, setSelectedFlight] = useState(null);
-  const [dropdown, setDropdown] = useState(false);
-  const [givenName, setGivenName] = useState(null);
-  const [surname, setSurname] = useState(null);
-  const [email, setEmail] = useState(null);
+  const [seat, setSeat] = useState("");
 
-  // Notes :
-  // flight = flights.SA231
-  // seating._id
+  // Form
+  const [givenName, setGivenName] = React.useState("");
+  const [surname, setSurname] = React.useState("");
+  const [email, setEmail] = React.useState("");
 
-  // get seating data for selected flight :
-  // app.get("/flights", getFlights);
-
-  // get flights data
+  // Get flights data :
   useEffect(() => {
     const findFlights = async () => {
       const res = await fetch("/flights");
       const data = await res.json();
-      // setFlightNum(data.data);
       console.log(data.data);
       setSeating(data.data);
     };
     findFlights();
   }, []);
 
-  // // get a flight data
-  // //app.get("/flight/:_id", getFlight);
-  // useEffect(() => {
-  //   const findSeats = async () => {
-  //     if(selectedFlight) {
-  //       const res = await fetch(`/flight/${selectedFlight}`);
-  //       const data = await res.json();
-  //       setReservationDetails(data.data);
-  //       setSeating(data.data.seats)
+  // Post a reservation :
+  const handleReservation = async (e) => {
+    e.preventDefault();
 
-  //     }
-  //   }
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        flight: flight,
+        seat: seat,
+        givenName: givenName,
+        surname: surname,
+        email: email,
+      }),
+    };
 
-  // }, []);
+    const res = await fetch("/reservation", requestOptions);
+    const data = await res.json();
+    // setReservationDetails(data.data);
+    newFun(data.data);
+    navigate(`/confirmed`);
+  };
 
-  // useEffect(() => {
-
-  // }, []);
-
-  const handleReservation = () => {};
+  if (!seating) {
+    return <div>Loading, please wait.</div>;
+  }
 
   return (
-    <Wrapper>
-      {seating && seating.length > 0 ? (
-        seating.map((seat) => (
-          <SeatWrapper key={`seat-${seat._id}`}>
-            <label>
-              {seat.isAvailable ? (
-                <>
-                  <Seat type="radio" name="seat" onChange={() => {}} />
-                  <Available>{seat._id}</Available>
-                </>
-              ) : (
-                <Unavailable>{seat._id}</Unavailable>
-              )}
-            </label>
-          </SeatWrapper>
-        ))
-      ) : (
-        <Placeholder>Select a Flight to view seating.</Placeholder>
-      )}
-    </Wrapper>
+    <>
+      <SeatsContainer>
+        <Text>Select your seat and Provide your information!</Text>
+        {seating && seating.length > 0 ? (
+          seating.map((seat) => (
+            <SeatWrapper key={`seat-${seat._id}`}>
+              <label>
+                {seat.isAvailable ? (
+                  <>
+                    <Seat
+                      type="radio"
+                      name="seat"
+                      onChange={() => {
+                        setSeat(seat._id);
+                        console.log(seat._id);
+                      }}
+                    />
+                    <Available
+                      style={
+                        seat._id === seat
+                          ? {
+                              backgroundColor: "var(--color-alabama-crimson)",
+                              color: "#fff",
+                            }
+                          : {}
+                      }
+                    >
+                      {seat._id}
+                    </Available>
+                  </>
+                ) : (
+                  <Unavailable>{seat._id}</Unavailable>
+                )}
+              </label>
+            </SeatWrapper>
+          ))
+        ) : (
+          <Placeholder>Select a Flight to view seating.</Placeholder>
+        )}
+      </SeatsContainer>
+      <FormContainer>
+        <UserInput>
+          <FirstName
+            placeholder="First Name"
+            onChange={(e) => {
+              setGivenName(e.target.value);
+            }}
+          ></FirstName>
+          <LastName
+            placeholder="Last Name"
+            onChange={(e) => {
+              setSurname(e.target.value);
+            }}
+          ></LastName>
+          <Email
+            placeholder="Email"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          ></Email>
+          <Submit
+            type="submit"
+            onClick={handleReservation}
+            disabled={!givenName || !surname || !email || !flight || !seat}
+            style={{
+              opacity:
+                !givenName || !surname || !email || !flight || !seat
+                  ? 0.5
+                  : undefined,
+            }}
+          >
+            Confirm
+          </Submit>
+        </UserInput>
+      </FormContainer>
+    </>
   );
 };
 
-const Wrapper = styled.ol`
+// Seat container styling :
+const SeatsContainer = styled.ol`
   display: grid;
   grid-template-rows: repeat(10, 30px);
   grid-template-columns: 30px 30px 60px 30px 30px 30px;
@@ -97,6 +152,11 @@ const Wrapper = styled.ol`
   width: 300px;
   position: relative;
   cursor: pointer;
+`;
+
+const Text = styled.h2`
+  margin-bottom: 60px;
+  margin-top: 40px;
 `;
 
 const SeatWrapper = styled.li`
@@ -168,6 +228,38 @@ const Placeholder = styled.div`
   font-family: var(--font-heading);
   font-size: 32px;
   opacity: 0.5;
+`;
+
+// Form styling :
+
+const FormContainer = styled.div`
+  display: flex;
+`;
+
+const UserInput = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid var(--color-alabama-crimson) 5px;
+`;
+
+const FirstName = styled.input`
+  margin: 20px;
+`;
+
+const LastName = styled.input`
+  margin: 20px;
+`;
+
+const Email = styled.input`
+  margin: 20px;
+`;
+
+const Submit = styled.button`
+  margin-bottom: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
 `;
 
 export default Plane;

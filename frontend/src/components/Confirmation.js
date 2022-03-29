@@ -17,15 +17,23 @@ const Confirmation = ({ reservationDetails }) => {
       <Text>
         <strong>Your flight is confirmed !</strong>
       </Text>
-      {/* <ResNum>Reservation #: {reservationDetails._id} </ResNum>
+      {/* <ResNum>Reservation #: {reservationDetails._id} </ResNum> */}
       <FlightNum>Flight #: {reservationDetails.flight}</FlightNum>
       <SeatNum>Seat #:{reservationDetails.seat}</SeatNum>
-      <Name>Name:{reservationDetails.givenName} {reservationDetails.surname}</Name>
+      <Name>
+        Name:{reservationDetails.givenName} {reservationDetails.surname}
+      </Name>
       <Email>Email:{reservationDetails.email}</Email>
-      <Logo src={tombstone} /> */}
+      <Logo src={tombstone} />
     </Wrapper>
   );
 };
+
+//  flight: flight,
+// seat: seat,
+// givenName: givenName,
+// surname: surname,
+// email: email,
 
 const Wrapper = styled.div`
   height: 400px;
@@ -45,9 +53,9 @@ const Text = styled.h1`
   padding-bottom: 5px;
 `;
 
-const ResNum = styled.h2`
-  margin-bottom: 20px;
-`;
+// const ResNum = styled.h2`
+//   margin-bottom: 20px;
+// `;
 
 const FlightNum = styled.h2`
   margin-bottom: 20px;
@@ -65,4 +73,8 @@ const Email = styled.h2`
   margin-bottom: 20px;
 `;
 
+const Logo = styled.img`
+  width: 80px;
+  height: 80px;
+`;
 export default Confirmation;

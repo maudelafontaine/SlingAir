@@ -10,7 +10,11 @@ import Reservations from "./Reservations";
 import GlobalStyles from "./GlobalStyles";
 
 const App = () => {
-  const [reservationDetails, setReservationDetails] = React.useState(null);
+  const [reservationDetails, setReservationDetails] = React.useState("");
+
+  const newFun = (value) => {
+    setReservationDetails(value);
+  };
 
   return (
     <>
@@ -23,7 +27,10 @@ const App = () => {
               exact
               path="/"
               element={
-                <SeatSelect setReservationDetails={setReservationDetails} />
+                <SeatSelect
+                  setReservationDetails={setReservationDetails}
+                  newFun={newFun}
+                />
               }
             />
             <Route
@@ -31,7 +38,10 @@ const App = () => {
               element={<Confirmation reservationDetails={reservationDetails} />}
             />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/view-reservation" element={<Reservations />} />
+            <Route
+              path="/view-reservation"
+              element={<Reservations reservationDetails={reservationDetails} />}
+            />
             <Route path="">404: Oops!</Route>
           </Routes>
           <Footer />
