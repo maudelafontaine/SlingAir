@@ -29,26 +29,36 @@ const Plane = ({ setReservationDetails, newFun }) => {
     findFlights();
   }, []);
 
+  // const info = {
+  //   flight: flight,
+  //   seat: seat,
+  //   givenName: givenName,
+  //   surname: surname,
+  //   email: email,
+  // };
+
   // Post a reservation :
-  const handleReservation = async (e) => {
-    e.preventDefault();
+  const handleReservation = async (event) => {
+    event.preventDefault();
+
+    let data = {
+      flight: flight,
+      seat: seat,
+      givenName: event.target["first-name"].value,
+      surname: event.target["last-name"].value,
+      email: event.target["email"].value,
+    };
 
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        flight: flight,
-        seat: seat,
-        givenName: givenName,
-        surname: surname,
-        email: email,
-      }),
+      body: JSON.stringify(data),
     };
 
     const res = await fetch("/reservation", requestOptions);
-    const data = await res.json();
+    const parseRes = await res.json();
     // setReservationDetails(data.data);
-    newFun(data.data);
+    newFun(data);
     navigate(`/confirmed`);
   };
 
@@ -98,28 +108,31 @@ const Plane = ({ setReservationDetails, newFun }) => {
         )}
       </SeatsContainer>
       <FormContainer>
-        <UserInput>
+        <UserInput onSubmit={handleReservation}>
           <FirstName
             placeholder="First Name"
+            name="first-name"
             onChange={(e) => {
               setGivenName(e.target.value);
             }}
           ></FirstName>
           <LastName
             placeholder="Last Name"
+            name="last-name"
             onChange={(e) => {
               setSurname(e.target.value);
             }}
           ></LastName>
           <Email
             placeholder="Email"
+            name="email"
             onChange={(e) => {
               setEmail(e.target.value);
             }}
           ></Email>
           <Submit
             type="submit"
-            onClick={handleReservation}
+            // onClick={handleReservation}
             disabled={!givenName || !surname || !email || !flight || !seat}
             style={{
               opacity:
@@ -236,7 +249,7 @@ const FormContainer = styled.div`
   display: flex;
 `;
 
-const UserInput = styled.div`
+const UserInput = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;

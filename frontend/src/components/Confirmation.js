@@ -6,11 +6,13 @@ import tombstone from "../assets/tombstone.png";
 const Confirmation = ({ reservationDetails }) => {
   let navigate = useNavigate();
 
-  React.useEffect(() => {
-    if (!reservationDetails) {
-      navigate("/");
-    }
-  }, []);
+  // React.useEffect(() => {
+  //   if (!reservationDetails) {
+  //     navigate("/");
+  //   }
+  // }, []);
+
+  console.log(reservationDetails);
 
   return (
     <Wrapper>
