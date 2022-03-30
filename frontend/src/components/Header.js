@@ -6,7 +6,8 @@ import slingairLogo from "../assets/logo_text.png";
 
 const Header = () => {
   const [reservations, setReservations] = React.useState(null);
-  // app.get("/reservations", getReservations);
+
+  // Get reservations
   React.useEffect(() => {
     const findReservations = async () => {
       const res = await fetch("/reservations");
@@ -95,5 +96,4 @@ const StyledNavLink = styled(NavLink)`
 export default Header;
 
 // Notes :
-//
-/* TODO: only show links if the user has a reservation already */
+/*Only show links if the user has a reservation already */

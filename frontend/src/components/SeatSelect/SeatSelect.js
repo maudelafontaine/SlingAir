@@ -1,11 +1,11 @@
-// Combines the Plane and Form (user inputs)
+// Combines the flight selection (dropdown), seats selection (plane) and form (user personnal info)
 
 import React from "react";
 import styled from "styled-components";
 import FlightSelect from "./FlightSelect";
 import Plane from "./Plane";
 
-const SeatSelect = ({ setReservationDetails, newFun }) => {
+const SeatSelect = ({ setReservationDetails, reservation }) => {
   const [flight, setFlight] = React.useState("");
 
   return (
@@ -15,7 +15,7 @@ const SeatSelect = ({ setReservationDetails, newFun }) => {
         <Plane
           setReservationDetails={setReservationDetails}
           flight={flight}
-          newFun={newFun}
+          reservation={reservation}
         />
       </Container>
     </Wrapper>
@@ -27,7 +27,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  /* height: 2000px; */
 `;
 
 const Container = styled.div`

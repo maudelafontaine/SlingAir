@@ -19,23 +19,16 @@ const Confirmation = ({ reservationDetails }) => {
       <Text>
         <strong>Your flight is confirmed !</strong>
       </Text>
-      {/* <ResNum>Reservation #: {reservationDetails._id} </ResNum> */}
-      <FlightNum>Flight #: {reservationDetails.flight}</FlightNum>
-      <SeatNum>Seat #:{reservationDetails.seat}</SeatNum>
+      <FlightNum>Flight # : {reservationDetails.flight}</FlightNum>
+      <SeatNum>Seat # :{reservationDetails.seat}</SeatNum>
       <Name>
-        Name:{reservationDetails.givenName} {reservationDetails.surname}
+        Name :{reservationDetails.givenName} {reservationDetails.surname}
       </Name>
-      <Email>Email:{reservationDetails.email}</Email>
+      <Email>Email :{reservationDetails.email}</Email>
       <Logo src={tombstone} />
     </Wrapper>
   );
 };
-
-//  flight: flight,
-// seat: seat,
-// givenName: givenName,
-// surname: surname,
-// email: email,
 
 const Wrapper = styled.div`
   height: 400px;
@@ -54,10 +47,6 @@ const Text = styled.h1`
   border-bottom: 6px solid var(--color-alabama-crimson);
   padding-bottom: 5px;
 `;
-
-// const ResNum = styled.h2`
-//   margin-bottom: 20px;
-// `;
 
 const FlightNum = styled.h2`
   margin-bottom: 20px;

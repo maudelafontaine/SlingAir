@@ -12,7 +12,7 @@ import GlobalStyles from "./GlobalStyles";
 const App = () => {
   const [reservationDetails, setReservationDetails] = React.useState("");
 
-  const newFun = (value) => {
+  const reservation = (value) => {
     setReservationDetails(value);
   };
 
@@ -29,7 +29,7 @@ const App = () => {
               element={
                 <SeatSelect
                   setReservationDetails={setReservationDetails}
-                  newFun={newFun}
+                  reservation={reservation}
                 />
               }
             />

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const Plane = ({ setReservationDetails, newFun }) => {
+const Plane = ({ setReservationDetails, reservation }) => {
   let navigate = useNavigate();
 
   const flight = "SA231";
@@ -58,7 +58,7 @@ const Plane = ({ setReservationDetails, newFun }) => {
     const res = await fetch("/reservation", requestOptions);
     const parseRes = await res.json();
     // setReservationDetails(data.data);
-    newFun(data);
+    reservation(data);
     navigate(`/confirmed`);
   };
 

@@ -136,9 +136,9 @@ const addReservations = async (req, res) => {
   const updated = { $set: { isAvailable: false } };
 
   const client = await new MongoClient(MONGO_URI, options);
-  await client.connect();
 
   try {
+    await client.connect();
     const db = client.db("SlingAir");
     const reservationResult = await db
       .collection("Reservations")
@@ -171,7 +171,6 @@ const deleteReservation = async (req, res) => {
   const query = { _id: req.body.seat };
   const updated = { $set: { isAvailable: true } };
 
-  // Need to modify
   if (!_id || !req.body.seat) {
     res.status(400).json({
       status: 400,
@@ -182,7 +181,7 @@ const deleteReservation = async (req, res) => {
   }
 
   const client = new MongoClient(MONGO_URI, options);
-  console.log({ _id, query });
+  // console.log({ _id, query });
 
   try {
     await client.connect();
@@ -197,7 +196,7 @@ const deleteReservation = async (req, res) => {
       res.status(201).json({
         status: 201,
         data: resultDeleted,
-        message: `Reservation #${_id} successfully deleted. Seat is now free!`,
+        message: `Reservation #${_id} successfully deleted.`,
       });
     } else {
       res.status(404).json({
