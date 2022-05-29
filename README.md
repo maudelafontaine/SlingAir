@@ -1,6 +1,8 @@
-# SlingAir:airplane:
+# SlingAir:airplane::seat:
 
 SlingAir is a seat-booking full-stack web application created for the SlingAirLines company.
+
+![alt text](/frontend/src/assets/screenshots/app.PNG)
 
 ## :star:The Goal
 

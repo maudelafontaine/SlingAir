@@ -56,7 +56,7 @@ const Main = styled.div`
   display: flex;
   flex-direction: column;
   /* height: calc(100vh - 110px); */
-  height: 1050px;
+  height: 100%;
 `;
 
 export default App;

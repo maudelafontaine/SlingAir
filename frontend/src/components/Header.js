@@ -54,6 +54,7 @@ const Link = styled(NavLink)`
   font-size: 40px;
   color: white;
   font-family: var(--font-heading);
+  padding-left: 15px;
 `;
 // const Logo = styled.div`
 //   color: black;
