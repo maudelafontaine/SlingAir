@@ -1,39 +1,22 @@
-# Node.JS Project: SlingAir!
+# SlingAir:airplane:
 
-<img src='frontend/src/assets/screenshots/header.png' style='width:100%' />
+SlingAir is a seat-booking full-stack web application created for the SlingAirLines company.
 
-You just accepted the full-stack developer position at Slingshot Airlines!
+## :star:The Goal
 
-They were really impressed with the work you did at Concordia Bootcamps. After a conversation with the CEO at the job fair, they hired you on the spot! They have project that they need to ship asap and are confident that you can deliver.
+This project was created in part to practice Node.js, used for the backend, and MongoDB to save the flights and reservations data.
 
-They have a new seat-booking app that is set to be released next week. You were told that _most_ of the work is already done, and that all that remains is to connect the different pieces to get it working.
+## :computer: Technologies Used
 
-You have been provided with a GitHub repo and little else.
-
-When you asked if it was possible to speak to the dev that worked on the project before you came aboard, you are told "Nope. Not possible. He left without notice and on bad terms."
-
-Looks like you're on your own...
-
-![mvp gif](frontend/src/assets/screenshots/slingair_mvp.gif)
-
----
-
-## The App
-
-### Screenshots
-
-<img src='frontend/src/assets/screenshots/seat-select.png' style='float:left;width:48%;margin-right:4%;' />
-<img src='frontend/src/assets/screenshots/confirmed.png' style='float:left;width:48%' />
-
-### Functionality
-
-- When a user navigates to `http://localhost:3000`, they are presented with an input to enter the flight number.
-- With the flight number, make a request to the server for the seating availability on that flight.
-- When a response with seating is received, display the seating input as well as the form requesting user's information.
-- User selects a seat, enters information and clicks 'Confirm'.
-- Contact the server with the data, and wait for a success response to redirect to the `/confirmed` page.
-- The confirmed page should display a confirmation message to the user with the info that they entered on the previous screen.
-- Consider using localStorage to save the reservation id, to allow for retrieval if the user closes and reopens the browser.
+- HTML
+- CSS
+- Styled-components
+- Javascript
+- React
+- Node.js
+- RESTful API
+- Express
+- MongoDB
 
 ## Project Setup
 
@@ -53,58 +36,20 @@ Use `yarn dev:frontend` to start the frontend dev environment.
 
 Use `yarn dev:backend` to start the backend dev environment.
 
-![dual terminal](frontend/src/assets/screenshots/dual_terminal.gif)
+## Functionalities
 
-## Developer Notes
+- When a user navigates to `http://localhost:3000`, they are presented with an input to enter the flight number.
+- With the flight number, it makes a request to the server for the seating availability on that flight.
+- When a response with seating is received, it displays the seating input as well as the form requesting user's information.
+- User selects a seat, enters information and clicks 'Confirm'.
+- It contact the server with the data, and wait for a success response to redirect to the `/confirmed` page.
+- The confirmed page displays a confirmation message to the user with the info that they entered on the previous screen.
 
-There is a folder called `notes` that contains possible hints on what to do next...
+## Next Steps
 
----
+The following are the next steps in improving my application:
 
-## Requirements for Project Completion
-
-In order for your project to be considered `DONE` (passing grade), you should have a working MVP of the app.
-
-### Backend
-
-1. Server endpoints are RESTful.
-2. There are endpoints for the following actions:
-   - retrieve all flight numbers
-   - retrieve single flight data (seating)
-   - retrieve all reservations
-   - retrieve a single reservation
-   - create a reservation
-   - delete a reservation _This is a requirement, even though the FE of this is a stretch goal._
-   - update a reservation _This is a requirement, even though the FE of this is a stretch goal._
-3. server should respond in a _complete_ fashion.
-   - Send the status and the json separately.
-   - send the status in the json object as well.
-   - when a request succeeds respond with requested `data`.
-   - when a request fails, respond with the `data` that was sent to the server. _This makes it easier for FE developers to debug their code._
-   - when a request does not need any data to be returned, provide a message explaining the status: i.e. "reservation deleted."
-
-```js
-res.status(200).json({ status: 200, data: {}, message: {} });
-```
-
-### Frontend
-
-1. user can select a flight from a dropdown. _Current implementation of an input field is not ideal._
-2. user can select an available seat.
-3. user can enter their personal information.
-4. user can view the flight confirmation page.
-5. given a reservation `id`, user should be able to view her reservation.
-
-_Note that mutated test data will be preserved as long as your server is running. It stays in memory. The changes will only be reset when the server is restarted._
-
-### Database Integration: MongoDB
-
-Migrate the data in `backend/data.js` to a brand-new MongoDB database.
-
-In order to incorporate the Database, you will need to modify your backend as it will no longer modify the data in memory, but will use the database to complete all of the requests it receives from the frontend.
-
-### Stretch
-
-- Create an interface for users to modify their personal information and/or cancel their reservation at `/profile`.
-- Create an admin interface at `/admin` to view all of the reservation. (The design is up to you.)
-- Any other improvements that you would like to make! Go wild!
+- Use localStorage to save the reservation id, to allow for retrieval if the user closes and reopens the browser.
+- Add more than one flight.
+- Create a Profile page where the user could view their personnal information and the list of the seats booked on different flights.
+- Create a Reservation page where the user could view their reservation.

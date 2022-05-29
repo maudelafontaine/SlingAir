@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { MdOutlineAirplaneTicket } from "react-icons/md";
 
-import slingairLogo from "../assets/logo_text.png";
+// import slingairLogo from "../assets/logo_text.png";
 
 const Header = () => {
   const [reservations, setReservations] = React.useState(null);
@@ -23,11 +24,13 @@ const Header = () => {
 
   return (
     <Wrapper>
-      <NavLink to="/">
-        <Logo>
-          <h1>Sling Airlines</h1>
-        </Logo>
-      </NavLink>
+      <Link to="/">
+        SlingAir
+        <MdOutlineAirplaneTicket
+          size={50}
+          style={{ paddingLeft: "8px", color: "var(--color-selective-yellow)" }}
+        />
+      </Link>
       <Nav>
         {reservations.length > 0 && (
           <StyledNavLink to="/view-reservation">Reservation</StyledNavLink>
@@ -46,17 +49,23 @@ const Wrapper = styled.header`
   padding: var(--padding-page) 18px;
 `;
 
-const Logo = styled.div`
-  color: black;
-  background-image: url(${slingairLogo});
-  background-repeat: no-repeat;
-  background-position: left center, right center;
-  background-size: contain;
-  overflow: hidden;
-  text-indent: -1000px;
-  height: 60px;
-  width: 550px;
+const Link = styled(NavLink)`
+  text-decoration: none;
+  font-size: 40px;
+  color: white;
+  font-family: var(--font-heading);
 `;
+// const Logo = styled.div`
+//   color: black;
+//   background-image: url(${slingairLogo});
+//   background-repeat: no-repeat;
+//   background-position: left center, right center;
+//   background-size: contain;
+//   overflow: hidden;
+//   text-indent: -1000px;
+//   height: 60px;
+//   width: 550px;
+// `;
 
 const Nav = styled.nav`
   display: flex;
@@ -66,7 +75,7 @@ const Nav = styled.nav`
 
 const StyledNavLink = styled(NavLink)`
   background: var(--color-selective-yellow);
-  border: 1px solid transparent;
+  /* border: 1px solid transparent; */
   border-radius: 4px;
   color: var(--color-alabama-crimson);
   display: flex;
